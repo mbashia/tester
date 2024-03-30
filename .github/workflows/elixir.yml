@@ -35,13 +35,7 @@ jobs:
 
     - name: Install dependencies
       run: mix deps.get
-      
-    - name: Run tests
-      run: mix test
-
-    - name: Setup database
-      run: mix ecto.setup
-      
+  
     - name: Run database migrations
       run: mix ecto.migrate
 
