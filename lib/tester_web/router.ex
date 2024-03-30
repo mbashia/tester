@@ -33,6 +33,16 @@ defmodule TesterWeb.Router do
     live "/tasks/:id/show/edit", TaskLive.Show, :edit
 
 
+    
+
+    live "/come", ComeLive.Index, :index
+    live "/come/new", ComeLive.Index, :new
+    live "/come/:id/edit", ComeLive.Index, :edit
+
+    live "/come/:id", ComeLive.Show, :show
+    live "/come/:id/show/edit", ComeLive.Show, :edit
+
+
   end
 
   # Other scopes may use custom stacks.

@@ -1,0 +1,41 @@
+<h1>Listing Come</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.come_index_path(@socket, :index)}>
+    <.live_component
+      module={TesterWeb.ComeLive.FormComponent}
+      id={@come.id || :new}
+      title={@page_title}
+      action={@live_action}
+      come={@come}
+      return_to={Routes.come_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Text</th>
+      <th>Description</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="come">
+    <%= for come <- @come_collection do %>
+      <tr id={"come-#{come.id}"}>
+        <td><%= come.text %></td>
+        <td><%= come.description %></td>
+
+        <td>
+          <span><%= live_redirect "Show", to: Routes.come_show_path(@socket, :show, come) %></span>
+          <span><%= live_patch "Edit", to: Routes.come_index_path(@socket, :edit, come) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: come.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span><%= live_patch "New Come", to: Routes.come_index_path(@socket, :new) %></span>

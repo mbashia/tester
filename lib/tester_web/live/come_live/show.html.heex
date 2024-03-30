@@ -1,0 +1,31 @@
+<h1>Show Come</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.come_show_path(@socket, :show, @come)}>
+    <.live_component
+      module={TesterWeb.ComeLive.FormComponent}
+      id={@come.id}
+      title={@page_title}
+      action={@live_action}
+      come={@come}
+      return_to={Routes.come_show_path(@socket, :show, @come)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Text:</strong>
+    <%= @come.text %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @come.description %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.come_show_path(@socket, :edit, @come), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.come_index_path(@socket, :index) %></span>
