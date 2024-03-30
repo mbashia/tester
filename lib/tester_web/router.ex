@@ -18,6 +18,14 @@ defmodule TesterWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    live "/post", PostLive.Index, :index
+    live "/post/new", PostLive.Index, :new
+    live "/post/:id/edit", PostLive.Index, :edit
+
+    live "/post/:id", PostLive.Show, :show
+    live "/post/:id/show/edit", PostLive.Show, :edit
+
+
   end
 
   # Other scopes may use custom stacks.
